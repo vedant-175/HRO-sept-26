@@ -232,9 +232,10 @@ app.get('/users/:user_id/ledger', (req, res) => {
 });
 
 // Initialize data and start server
+const port = process.env.PORT || 8000;
 engine.init().then(() => {
-    app.listen(8000, () => {
-        console.log("Server listening on port 8000");
+    app.listen(port, () => {
+        console.log(`Server listening on port ${port}`);
     });
 }).catch(err => {
     console.error("Failed to initialize engine:", err);

@@ -8,7 +8,7 @@ import { Loader2 } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Stars } from '@react-three/drei';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const DEFAULT_USER_ID = 'u1';
 
 export default function NexusView() {

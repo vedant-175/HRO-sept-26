@@ -47,7 +47,8 @@ export default function Dashboard() {
     const req = requests.find(r => r.id === selectedId);
     if (req && !req.analyzed && !analyzing) {
        setAnalyzing(true);
-       fetch(`http://localhost:8000/requests/${req.id.replace('req', 'request_')}/decision`)
+       const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+       fetch(`${API_URL}/requests/${req.id.replace('req', 'request_')}/decision`)
          .then(res => res.json())
          .then(data => {
             if (data && data.decision) {
