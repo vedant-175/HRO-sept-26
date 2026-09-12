@@ -41,7 +41,7 @@ function buildForecast(r: MockRequest) {
 }
 
 export default function ForecastChart({ request }: ForecastChartProps) {
-  const { series, markers, dayLabels, areaPath, linePath, threshY, m } = useMemo(() => {
+  const { markers, dayLabels, areaPath, linePath, threshY, m } = useMemo(() => {
     if (!request) return { series: [], markers: null, dayLabels: null, areaPath: '', linePath: '', threshY: 0, m: STATUS_META.affordable_now };
 
     const s = buildForecast(request);
@@ -82,7 +82,7 @@ export default function ForecastChart({ request }: ForecastChartProps) {
     <div className="chart-panel">
       <div className="chart-head">
         <h4>Balance vs. minimum threshold</h4>
-        <div className="sub" id="chart-sub">{request.request_date} → +90d · {request.currency}</div>
+        <div className="sub" id="chart-sub">Today → +90d · {request.currency}</div>
       </div>
       <svg id="forecast-svg" viewBox="0 0 900 132" preserveAspectRatio="none">
         <defs>

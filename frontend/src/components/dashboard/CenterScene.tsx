@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+
 import ThreeCanvas from './ThreeCanvas';
 import type { ThreeCanvasRef } from './ThreeCanvas';
 import ForecastChart from './ForecastChart';

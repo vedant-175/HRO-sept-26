@@ -12,7 +12,7 @@ const API_URL = 'http://localhost:8000';
 const DEFAULT_USER_ID = 'u1';
 
 export default function NexusView() {
-  const { setData, viewMode, selectRequest, selectedRequest } = useStore();
+  const { setData, selectRequest, selectedRequest } = useStore();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

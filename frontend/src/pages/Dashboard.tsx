@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { fetchMockRequests } from '../data/mockRequests';
 import type { MockRequest } from '../data/mockRequests';
 import './Dashboard.css';

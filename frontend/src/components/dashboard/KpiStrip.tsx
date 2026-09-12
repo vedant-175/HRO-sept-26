@@ -1,4 +1,4 @@
-import React from 'react';
+
 import type { MockRequest } from '../../data/mockRequests';
 import { STATUS_META } from '../../data/mockRequests';
 

@@ -1,12 +1,12 @@
-import React, { useMemo, useRef, useEffect } from 'react';
+import { useMemo, useRef, useEffect } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { useStore } from '../../store';
 import * as THREE from 'three';
-import { Line, Sphere, Text, Float, Sparkles, Ring } from '@react-three/drei';
+import { Line, Text, Float, Sparkles, Ring } from '@react-three/drei';
 import gsap from 'gsap';
 
 export default function DataNexus() {
-  const { ledger, requests, selectedRequest, viewMode, searchTerm } = useStore();
+  const { ledger, requests, selectedRequest, searchTerm } = useStore();
   const { camera } = useThree();
   const coreRef = useRef<THREE.Mesh>(null);
   
@@ -110,7 +110,6 @@ export default function DataNexus() {
         const dummy = { t: 0 };
         const startRot = camera.rotation.clone();
         camera.lookAt(node.position);
-        const endRot = camera.rotation.clone();
         camera.rotation.copy(startRot);
         
         gsap.to(dummy, {
@@ -167,7 +166,7 @@ export default function DataNexus() {
 
       {/* Time Horizon Rings */}
       <group rotation={[Math.PI / 2, 0, 0]}>
-        {[30, 60, 90].map((days, i) => {
+        {[30, 60, 90].map((days) => {
           const r = 6 + (days * 0.15);
           return (
             <group key={`ring-${days}`}>
@@ -181,7 +180,7 @@ export default function DataNexus() {
       </group>
 
       {/* Nodes and Energy Tethers */}
-      {nodes.map((node, i) => {
+      {nodes.map((node) => {
         const isSelected = selectedRequest?.request_id === node.req.request_id;
         
         // Search filter opacity
