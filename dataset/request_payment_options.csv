@@ -1,0 +1,2 @@
+request_id,payment_option_id,total_payable_amount,first_payment_date,days_between_payments,number_of_payments,financing_fee
+req1,opt1,2600.0,2026-09-12,30,6,100.0

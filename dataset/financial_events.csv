@@ -1,0 +1,4 @@
+event_id,user_id,event_date,amount,currency,event_type,is_recurring,is_flexible,linked_event_id
+ev1,u1,2026-09-15,3000.0,USD,salary,True,False,
+ev2,u1,2026-09-20,-1500.0,USD,rent,True,False,
+ev3,u1,2026-09-25,-200.0,USD,subscription,True,True,

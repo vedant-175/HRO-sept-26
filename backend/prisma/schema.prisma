@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                                 String             @id @default(uuid())
+  user_id                            String             @unique
+  password                           String             // For Auth
+  home_currency                      String
+  available_balance                  Float
+  minimum_balance_to_keep            Float
+  payment_methods_user_will_consider String
+  events                             Event[]
+  requests                           Request[]
+  messages                           Message[]
+  images                             Image[]
+  createdAt                          DateTime           @default(now())
+  updatedAt                          DateTime           @updatedAt
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  event_id    String   @unique
+  user_id     String
+  event_type  String
+  amount      Float
+  date        String
+  description String
+  user        User     @relation(fields: [user_id], references: [user_id])
+}
+
+model Request {
+  id             String          @id @default(uuid())
+  request_id     String          @unique
+  user_id        String
+  type           String
+  target_amount  Float
+  currency       String
+  status         String
+  date           String
+  user           User            @relation(fields: [user_id], references: [user_id])
+  paymentOptions PaymentOption[]
+  messages       Message[]
+  images         Image[]
+}
+
+model PaymentOption {
+  id         String  @id @default(uuid())
+  option_id  String  @unique
+  request_id String
+  method     String
+  amount     Float
+  currency   String
+  terms      String?
+  request    Request @relation(fields: [request_id], references: [request_id])
+}
+
+model Message {
+  id               String  @id @default(uuid())
+  message_id       String  @unique
+  user_id          String
+  request_id       String?
+  related_event_id String?
+  timestamp        String
+  sender           String
+  content          String
+  user             User    @relation(fields: [user_id], references: [user_id])
+  request          Request? @relation(fields: [request_id], references: [request_id])
+}
+
+model Image {
+  id               String  @id @default(uuid())
+  image_id         String  @unique
+  user_id          String
+  request_id       String?
+  related_event_id String?
+  image_path       String
+  context          String?
+  user             User    @relation(fields: [user_id], references: [user_id])
+  request          Request? @relation(fields: [request_id], references: [request_id])
+}

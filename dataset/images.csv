@@ -1,0 +1,2 @@
+image_id,user_id,request_id,related_event_id,image_path
+img1,u1,req1,,dataset/media/images/img1.png

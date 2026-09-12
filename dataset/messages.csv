@@ -1,0 +1,2 @@
+message_id,user_id,request_id,related_event_id,message_text,timestamp
+msg1,u1,,ev2,My rent is increasing to 1600 starting this month.,2026-09-11T10:00:00

@@ -1,0 +1,2 @@
+request_id,amount_safe_to_pay,affordability_status,recommended_payment_method,payment_plan,earliest_date_for_full_payment,spending_changes_needed,decision_explanation
+req0,1000.0,affordable_with_plan,installments,2026-09-12:500|2026-10-12:500,2026-11-15,none,Sample explanation.
