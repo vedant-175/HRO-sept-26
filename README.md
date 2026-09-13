@@ -26,6 +26,10 @@ A complete deterministic decision engine and interactive 3D web application to a
 3. Start the dev server: `npm run dev`
 4. Open the browser at the provided localhost URL (usually http://localhost:3200) to see the 3D dashboard.
 
+## Cloud Deployment (Vercel & Render)
+1. **Backend (Render)**: Deploy the `backend/` directory as a Node.js Web Service on Render using the build command `npm install` and start command `npm start`. Add `GROQ_API_KEY` to the environment variables.
+2. **Frontend (Vercel)**: Import the repository in Vercel, set the Root Directory to `frontend`. Add `VITE_API_URL` to point to your live Render backend URL.
+
 ## Tests & Evaluation
 - To run the evaluation and regenerate the workflow report: 
   `cd backend/evaluation`

@@ -5,3 +5,6 @@ dist/
 code.zip
 .venv/
 __pycache__/
+dataset/
+data/
+log.txt
