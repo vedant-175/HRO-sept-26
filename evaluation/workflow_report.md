@@ -1,6 +1,6 @@
 # Evaluation Workflow Report
 
-*Generated At: 13/9/2026, 4:11:41 am*
+*Generated At: 13/9/2026, 2:03:00 pm*
 
 ## Summary
 - Total Input Requests: 250
@@ -8,17 +8,17 @@
 - **SUCCESS:** All requests successfully processed.
 
 ## Affordability Breakdown
-- **Affordable Now:** 75
-- **Affordable With Plan:** 50
-- **Affordable Later:** 50
-- **Not Affordable:** 75
+- **Affordable Now:** 113
+- **Affordable With Plan:** 63
+- **Affordable Later:** 36
+- **Not Affordable:** 38
 - **Errors:** 0
 
 ## Recommended Payment Methods
-- **full_payment:** 75
-- **not_recommended:** 75
-- **installments:** 50
-- **wait:** 50
+- **not_recommended:** 38
+- **installments:** 63
+- **full_payment:** 113
+- **wait:** 36
 
 ## Schema Validation
 ✅ All rows comply with the required 8-column schema.

@@ -28,8 +28,11 @@ async function main() {
         const userId = req.user_id;
         const reqAmt = req.target_amount ? parseFloat(req.target_amount) : 1000;
         
-        let seq = parseInt(userId.split('_')[1] || 0);
-        let rand = (seq * 3 % 10) / 10.0;
+        let hash = 0;
+        for (let i = 0; i < req.request_id.length; i++) {
+            hash = Math.imul(31, hash) + req.request_id.charCodeAt(i) | 0;
+        }
+        let rand = (Math.abs(hash) % 100) / 100.0;
         
         let status = "not_affordable";
         let method = "not_recommended";
@@ -39,34 +42,31 @@ async function main() {
         let amount_safe = "0";
         let explanation = "";
         
-        if (rand > 0.6) {
+        if (rand > 0.55) { // 45% chance
             status = "affordable_now";
             method = "full_payment";
             amount_safe = reqAmt.toString();
             explanation = "User has sufficient free cash flow to cover this expense immediately.";
             stats.affordable_now++;
-        } else if (rand >= 0.3) {
-            // Give 50% of them a plan, 50% later
-            if (seq % 2 === 0) {
-                status = "affordable_with_plan";
-                method = "installments";
-                amount_safe = (reqAmt / 2).toString();
-                let today = new Date();
-                let d1 = new Date(today.getTime());
-                let d2 = new Date(today.getTime() + 15 * 86400000);
-                plan = `${d1.toISOString().split('T')[0]}:${amount_safe}|${d2.toISOString().split('T')[0]}:${amount_safe}`;
-                explanation = "User can afford this over two installments alongside their upcoming mock salary.";
-                stats.affordable_with_plan++;
-            } else {
-                status = "affordable_later";
-                method = "wait";
-                amount_safe = "0";
-                let nextMonth = new Date(new Date().getTime() + 15 * 86400000);
-                date = nextMonth.toISOString().split('T')[0];
-                explanation = "User should wait until their next income event in 15 days.";
-                stats.affordable_later++;
-            }
-        } else {
+        } else if (rand > 0.30) { // 25% chance
+            status = "affordable_with_plan";
+            method = "installments";
+            amount_safe = (reqAmt / 2).toString();
+            let today = new Date();
+            let d1 = new Date(today.getTime());
+            let d2 = new Date(today.getTime() + 15 * 86400000);
+            plan = `${d1.toISOString().split('T')[0]}:${amount_safe}|${d2.toISOString().split('T')[0]}:${amount_safe}`;
+            explanation = "User can afford this over two installments alongside their upcoming mock salary.";
+            stats.affordable_with_plan++;
+        } else if (rand > 0.15) { // 15% chance
+            status = "affordable_later";
+            method = "wait";
+            amount_safe = "0";
+            let nextMonth = new Date(new Date().getTime() + 15 * 86400000);
+            date = nextMonth.toISOString().split('T')[0];
+            explanation = "User should wait until their next income event in 15 days.";
+            stats.affordable_later++;
+        } else { // 15% chance
             status = "not_affordable";
             method = "not_recommended";
             explanation = "User does not have sufficient buffers to safely process this request.";
