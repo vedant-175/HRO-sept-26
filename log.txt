@@ -54,9 +54,3 @@ Session ID: 3c5931a7-0790-47be-b3c7-4e06e4706de5
 
 [USER REQUEST]: "Code zip: zip your code/ directory and upload it. Predictions CSV... Chat transcript..."
 [AGENT ACTION]: Generated `code.zip` utilizing `tar.exe`, strictly excluding `node_modules`, `.env`, `.venv`, and `dataset` folders to meet submission constraints. 
-
-[USER REQUEST]: "should i have to deploy"
-[AGENT ACTION]: Advised the user that cloud deployment to Vercel/Render is not strictly required for this specific hackathon step, only the upload of the zip files.
-
-[USER REQUEST]: "i want log.txt"
-[AGENT ACTION]: Compiled this comprehensive Chat Transcript and Engineering Log document (`log.txt`) directly containing all user requests and agent engineering steps for the final submission.
